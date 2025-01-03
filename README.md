@@ -23,3 +23,6 @@ TARGET_USER_ID=<TARGET_USER_ID>
 ```
 python fanalyze.py
 ```
+
+## Author
+Emad Armoun (EmiTex)
