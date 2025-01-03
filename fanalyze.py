@@ -20,7 +20,18 @@ def validate_api_keys():
         print("Error: Invalid API Key or Secret.")
         print(f"Details: {e}")
         exit(1)
+
+def validate_user_id(user_id):
+    try:
+        flickr.people.getInfo(user_id=user_id)
+        print("User ID is valid.")
+    except flickrapi.exceptions.FlickrError as e:
+        print("Error: Invalid User ID.")
+        print(f"Details: {e}")
+        exit(1)
+
 validate_api_keys()
+validate_user_id(USER_ID)
 
 def get_photos_info(user_id):
     photos_data = []
