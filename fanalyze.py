@@ -3,6 +3,9 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 
+print()
+print("----------------====<<<<< Flickr Analyzer >>>>>====----------------")
+print("------------- Photos List based on the Interest Rate --------------")
 load_dotenv()
 API_KEY = os.getenv('FLICKR_API_KEY')
 API_SECRET = os.getenv('FLICKR_API_SECRET')
@@ -44,12 +47,14 @@ def get_photos_info(user_id):
 
     return photos_data
 
+print('\nGetting photos information...')
 photos_data = get_photos_info(USER_ID)
 
 df = pd.DataFrame(photos_data)
 df.sort_values(by='Interest Rate', ascending=True, inplace=True)
 
-print("Photos sorted based on the Interest Rate:\n", df)
+print('Photos List based on the Interest Rate:\n')
+print(df)
 
 df.to_csv('flickr_photos_analysis.csv', index=False)
-print("Data also saved to 'flickr_photos_analysis.csv'")
+print("\nData also saved to 'flickr_photos_analysis.csv'")
