@@ -11,6 +11,14 @@ API_KEY = os.getenv('FLICKR_API_KEY')
 API_SECRET = os.getenv('FLICKR_API_SECRET')
 USER_ID = os.getenv('TARGET_USER_ID')
 
+if not API_KEY or not API_SECRET:
+    print("Error: API_KEY or API_SECRET is missing. Please check your .env file.")
+    exit(1)
+
+if not USER_ID:
+    print("Error: USER_ID is missing. Please check your .env file.")
+    exit(1)
+
 flickr = flickrapi.FlickrAPI(API_KEY, API_SECRET, format='parsed-json')
 
 def validate_api_keys():
@@ -24,7 +32,6 @@ def validate_api_keys():
 def validate_user_id(user_id):
     try:
         flickr.people.getInfo(user_id=user_id)
-        print("User ID is valid.")
     except flickrapi.exceptions.FlickrError as e:
         print("Error: Invalid User ID.")
         print(f"Details: {e}")
