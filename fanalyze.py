@@ -13,6 +13,15 @@ USER_ID = os.getenv('TARGET_USER_ID')
 
 flickr = flickrapi.FlickrAPI(API_KEY, API_SECRET, format='parsed-json')
 
+def validate_api_keys():
+    try:
+        flickr.test.echo()
+    except flickrapi.exceptions.FlickrError as e:
+        print("Error: Invalid API Key or Secret.")
+        print(f"Details: {e}")
+        exit(1)
+validate_api_keys()
+
 def get_photos_info(user_id):
     photos_data = []
     page = 1
